@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { AddressFormComponent } from './address-form/address-form.component';
 import { AddressTableComponent } from './address-table/address-table.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
-import { AppRoutingModule } from './app-routing.module'; // Import the AppRoutingModule
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { AppRoutingModule } from './app-routing.module'; // Import the AppRoutin
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule // Include AppRoutingModule in imports array
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,3 @@
-// src/app/file-upload/file-upload.component.ts
 import { Component } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';

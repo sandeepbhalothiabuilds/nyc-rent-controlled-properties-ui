@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  records: any[] = []; // Ensure this is typed as an array
+  records: any[] = [];
 
   constructor(private http: HttpClient) {}
 
