@@ -1,0 +1,23 @@
+<table>
+    <thead>
+      <tr>
+        <th>House Number</th>
+        <th>Prefix</th>
+        <th>Street Name</th>
+        <th>Street Type</th>
+        <th>Suffix</th>
+        <th>County</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of records">
+        <td>{{ record.houseNumber }}</td>
+        <td>{{ record.prefix }}</td>
+        <td>{{ record.streetName }}</td>
+        <td>{{ record.streetType }}</td>
+        <td>{{ record.suffix }}</td>
+        <td>{{ record.county }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

@@ -1,0 +1,46 @@
+<!-- src/app/address-form/address-form.component.html -->
+<div class="container">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="houseNumber">Street House Number:</label>
+        <input id="houseNumber" name="houseNumber" [(ngModel)]="address.houseNumber">
+      </div>
+      <div class="form-group">
+        <label for="prefix">Street Direction Prefix:</label>
+        <select id="prefix" name="prefix" [(ngModel)]="address.prefix">
+          <option value="">None</option>
+          <option value="N">North</option>
+          <option value="S">South</option>
+          <option value="E">East</option>
+          <option value="W">West</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="streetName">Street Name:</label>
+        <input id="streetName" name="streetName" [(ngModel)]="address.streetName">
+      </div>
+      <div class="form-group">
+        <label for="streetType">Street Type:</label>
+        <input id="streetType" name="streetType" [(ngModel)]="address.streetType">
+      </div>
+      <div class="form-group">
+        <label for="suffix">Street Direction Suffix:</label>
+        <select id="suffix" name="suffix" [(ngModel)]="address.suffix">
+          <option value="">None</option>
+          <option value="N">North</option>
+          <option value="S">South</option>
+          <option value="E">East</option>
+          <option value="W">West</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="county">County:</label>
+        <input id="county" name="county" [(ngModel)]="address.county">
+      </div>
+      <div class="form-group">
+        <button type="submit">Submit</button>
+        <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+  
