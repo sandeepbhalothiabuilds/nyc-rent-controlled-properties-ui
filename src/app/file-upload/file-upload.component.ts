@@ -25,7 +25,7 @@ export class FileUploadComponent {
       formData.append('file', this.selectedFile);
 
       //this.http.post('http://localhost:5000/nyc/rcu/upload', formData).pipe(
-      this.http.post('http://ec2-3-88-108-171.compute-1.amazonaws.com:5000/nyc/rcu/upload', formData).pipe(
+      this.http.post('http://nyc-rent-stablized-2-env.eba-zgrxhx29.us-east-1.elasticbeanstalk.com/nyc/rcu/upload', formData).pipe(
         catchError(this.handleError)
       ).subscribe(response => {
         this.uploadSuccess = true;

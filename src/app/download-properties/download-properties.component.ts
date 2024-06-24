@@ -21,7 +21,7 @@ export class DownloadPropertiesComponent {
       this.errorMessage = '';
             //this.http.get<any[]>(`http://localhost:8080/nyc/rcu/getProperties/${this.selectedBorough}`).subscribe(
 
-      this.http.get<any[]>(`http://ec2-3-88-108-171.compute-1.amazonaws.com:5000/nyc/rcu/getProperties/${this.selectedBorough}`).subscribe(
+      this.http.get<any[]>(`http://nyc-rent-stablized-2-env.eba-zgrxhx29.us-east-1.elasticbeanstalk.com/nyc/rcu/getProperties/${this.selectedBorough}`).subscribe(
         data => {
           this.properties = data;
           this.downloadCSV(data);

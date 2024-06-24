@@ -20,14 +20,20 @@ export class AddressFormComponent {
 
   boroughs: string[] = ['MN', 'BX', 'BK', 'QN', 'SI'];
   searchResults: any[] = [];
+  currentOffset: number = 0;
+  hasMoreResults: boolean = false;
 
   constructor(private http: HttpClient) {}
 
   onSubmit() {
-    const { zipcode, borough } = this.address;
-    let url = `http://localhost:5000/nyc/rcu/api/properties/criteria?offset=50`;
-    //let url = `http://ec2-3-88-108-171.compute-1.amazonaws.com:5000/nyc/rcu/api/properties/criteria?offset=50`;
+    this.currentOffset = 0;
+    this.fetchData();
+  }
 
+  fetchData() {
+    const { zipcode, borough } = this.address;
+    //let url = `http://localhost:8080/nyc/rcu/api/properties/criteria?offset=${this.currentOffset}`;
+    let url = `http://nyc-rent-stablized-2-env.eba-zgrxhx29.us-east-1.elasticbeanstalk.com/nyc/rcu/api/properties/criteria?offset=${this.currentOffset}`;
     if (zipcode) {
       url += `&zipcode=${zipcode}`;
     }
@@ -52,9 +58,24 @@ export class AddressFormComponent {
         borough: item.addresses.borough,
         zip: item.addresses.zip
       }));
+      this.hasMoreResults = data.length > 0;
     }, error => {
       console.error('Error fetching properties:', error);
     });
+  }
+
+  nextPage() {
+    if (this.hasMoreResults) {
+      this.currentOffset += 50;
+      this.fetchData();
+    }
+  }
+
+  previousPage() {
+    if (this.currentOffset > 0) {
+      this.currentOffset -= 50;
+      this.fetchData();
+    }
   }
 
   onCancel() {
