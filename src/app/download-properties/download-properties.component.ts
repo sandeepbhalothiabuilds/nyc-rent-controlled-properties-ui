@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-download-properties',
@@ -10,19 +10,27 @@ export class DownloadPropertiesComponent {
   boroughs: string[] = ['MN', 'BX', 'BK', 'QN', 'SI'];
   selectedBorough: string = '';
   properties: any[] = [];
+  isLoading: boolean = false;
+  errorMessage: string = '';
 
   constructor(private http: HttpClient) {}
 
   onDownload() {
     if (this.selectedBorough) {
-      //this.http.get<any[]>(`http://localhost:8080/nyc/rcu/getProperties/${this.selectedBorough}`).subscribe(
-        this.http.get<any[]>(`http://ch-nyc-app-2-env.eba-urc9ybxz.us-east-1.elasticbeanstalk.com/nyc/rcu/getProperties/${this.selectedBorough}`).subscribe(
+      this.isLoading = true;
+      this.errorMessage = '';
+            //this.http.get<any[]>(`http://localhost:8080/nyc/rcu/getProperties/${this.selectedBorough}`).subscribe(
+
+      this.http.get<any[]>(`http://ch-nyc-app-2-env.eba-urc9ybxz.us-east-1.elasticbeanstalk.com/nyc/rcu/getProperties/${this.selectedBorough}`).subscribe(
         data => {
           this.properties = data;
           this.downloadCSV(data);
+          this.isLoading = false;
         },
-        error => {
+        (error: HttpErrorResponse) => {
           console.error('Error fetching properties:', error);
+          this.isLoading = false;
+          this.errorMessage = 'Error fetching properties. Please try again later.';
         }
       );
     }
