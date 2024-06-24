@@ -1,45 +1,98 @@
 <div class="container">
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="houseNumber">Street House Number:</label>
-        <input id="houseNumber" name="houseNumber" [(ngModel)]="address.houseNumber">
-      </div>
-      <div class="form-group">
-        <label for="prefix">Street Direction Prefix:</label>
-        <select id="prefix" name="prefix" [(ngModel)]="address.prefix">
-          <option value="">None</option>
-          <option value="N">North</option>
-          <option value="S">South</option>
-          <option value="E">East</option>
-          <option value="W">West</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="streetName">Street Name:</label>
-        <input id="streetName" name="streetName" [(ngModel)]="address.streetName">
-      </div>
-      <div class="form-group">
-        <label for="streetType">Street Type:</label>
-        <input id="streetType" name="streetType" [(ngModel)]="address.streetType">
-      </div>
-      <div class="form-group">
-        <label for="suffix">Street Direction Suffix:</label>
-        <select id="suffix" name="suffix" [(ngModel)]="address.suffix">
-          <option value="">None</option>
-          <option value="N">North</option>
-          <option value="S">South</option>
-          <option value="E">East</option>
-          <option value="W">West</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="county">County:</label>
-        <input id="county" name="county" [(ngModel)]="address.county">
-      </div>
-      <div class="form-group">
-        <button type="submit">Submit</button>
-        <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
-      </div>
-    </form>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="houseNumber">Street House Number:</label>
+      <input id="houseNumber" name="houseNumber" [(ngModel)]="address.houseNumber" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="prefix">Street Direction Prefix:</label>
+      <select id="prefix" name="prefix" [(ngModel)]="address.prefix" class="form-control">
+        <option value="">None</option>
+        <option value="N">North</option>
+        <option value="S">South</option>
+        <option value="E">East</option>
+        <option value="W">West</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="streetName">Street Name:</label>
+      <input id="streetName" name="streetName" [(ngModel)]="address.streetName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="streetType">Street Type:</label>
+      <input id="streetType" name="streetType" [(ngModel)]="address.streetType" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="suffix">Street Direction Suffix:</label>
+      <select id="suffix" name="suffix" [(ngModel)]="address.suffix" class="form-control">
+        <option value="">None</option>
+        <option value="N">North</option>
+        <option value="S">South</option>
+        <option value="E">East</option>
+        <option value="W">West</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="county">County:</label>
+      <input id="county" name="county" [(ngModel)]="address.county" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="zipcode">Zip Code:</label>
+      <input id="zipcode" name="zipcode" [(ngModel)]="address.zipcode" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="borough">Borough:</label>
+      <select id="borough" name="borough" [(ngModel)]="address.borough" class="form-control">
+        <option value="">Select Borough</option>
+        <option *ngFor="let borough of boroughs" [value]="borough">{{borough}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+
+  <!-- Add a table to display the search results -->
+  <div *ngIf="searchResults.length > 0" class="results-table">
+    <h3>Search Results</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Block</th>
+          <th>Lot</th>
+          <th>Number of Buildings</th>
+          <th>Number of Floors</th>
+          <th>Residential Units</th>
+          <th>Total Units</th>
+          <th>UCBL Number</th>
+          <th>Building Number</th>
+          <th>Street</th>
+          <th>State Suffix</th>
+          <th>City</th>
+          <th>Borough</th>
+          <th>Zip Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let result of searchResults">
+          <td>{{ result.status1 }}</td>
+          <td>{{ result.block }}</td>
+          <td>{{ result.lot }}</td>
+          <td>{{ result.numberOfBuildings }}</td>
+          <td>{{ result.numOfFloors }}</td>
+          <td>{{ result.unitRes }}</td>
+          <td>{{ result.unitTotal }}</td>
+          <td>{{ result.ucbblNumber }}</td>
+          <td>{{ result.buildingNumber }}</td>
+          <td>{{ result.street }}</td>
+          <td>{{ result.stateSuffix }}</td>
+          <td>{{ result.city }}</td>
+          <td>{{ result.borough }}</td>
+          <td>{{ result.zip }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
+</div>
