@@ -24,7 +24,8 @@ export class FileUploadComponent {
       const formData = new FormData();
       formData.append('file', this.selectedFile);
 
-      this.http.post('http://localhost:8080/nyc/rcu/upload', formData).pipe(
+      this.http.post('http://localhost:5000/nyc/rcu/upload', formData).pipe(
+        //this.http.post('http://ch-nyc-app-2-env.eba-urc9ybxz.us-east-1.elasticbeanstalk.com/nyc/rcu/upload', formData).pipe(
         catchError(this.handleError)
       ).subscribe(response => {
         this.uploadSuccess = true;

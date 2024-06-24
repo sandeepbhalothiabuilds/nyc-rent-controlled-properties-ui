@@ -1,0 +1,13 @@
+<div class="container">
+    <h2>Download Properties</h2>
+    <div class="form-group">
+      <label for="borough">Select Borough:</label>
+      <select id="borough" [(ngModel)]="selectedBorough" class="form-control">
+        <option *ngFor="let borough of boroughs" [value]="borough">{{borough}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button (click)="onDownload()" class="btn btn-primary">Download</button>
+    </div>
+  </div>
+  
